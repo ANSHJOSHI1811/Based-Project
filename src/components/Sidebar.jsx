@@ -6,9 +6,12 @@ const Sidebar = () => {
   const [cpu, setCpu] = useState([0, 896]);
   const [ram, setRam] = useState([0, 35]);
   const [disk,setdisk]=useState([0,360]);
+  const [GPU, setGpu]=useState([0,16]);
+  const [Bandwidth,setBandwidth]=useState([0,214]);
+  const [Networkspeed,setNetworkspeed]=useState([0,400]);
 
   return (
-    <div className="w-72 bg-white p-4 shadow-lg h-screen overflow-y-auto">
+    <div className="w-72 bg-white p-4 shadow-lg h-screen top-0 p-4 overflow-y-auto">
       <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
       <div className="mb-6">
@@ -145,6 +148,78 @@ const Sidebar = () => {
           max={360}
           value={disk[1]}
           onChange={(e) => setdisk([disk[0], e.target.valueAsNumber])}
+          className="w-full mt-1"
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block mb-2 font-medium">GPU</label>
+        <div className="flex justify-between text-sm mb-2">
+          <span>{GPU[0]}</span>
+          <span>{GPU[1]}</span>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={16}
+          value={GPU[0]}
+          onChange={(e) => setGpu([e.target.valueAsNumber, GPU[1]])}
+          className="w-full"
+        />
+        <input
+          type="range"
+          min={0}
+          max={16}
+          value={GPU[1]}
+          onChange={(e) => setGpu([GPU[0], e.target.valueAsNumber])}
+          className="w-full mt-1"
+        />
+      </div>
+      
+      <div className="mb-6">
+        <label className="block mb-2 font-medium">Bandwidth</label>
+        <div className="flex justify-between text-sm mb-2">
+          <span>{Bandwidth[0]} MBps</span>
+          <span>{Bandwidth[1]} GBps</span>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={214}
+          value={Bandwidth[0]}
+          onChange={(e) => setBandwidth([e.target.valueAsNumber, Bandwidth[1]])}
+          className="w-full"
+        />
+        <input
+          type="range"
+          min={0}
+          max={214}
+          value={Bandwidth[1]}
+          onChange={(e) => setBandwidth([Bandwidth[0], e.target.valueAsNumber])}
+          className="w-full mt-1"
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block mb-2 font-medium">Network Speed</label>
+        <div className="flex justify-between text-sm mb-2">
+          <span>{Networkspeed[0]} MBps</span>
+          <span>{Networkspeed[1]} GBps</span>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={214}
+          value={Networkspeed[0]}
+          onChange={(e) => setNetworkspeed([e.target.valueAsNumber, Networkspeed[1]])}
+          className="w-full"
+        />
+        <input
+          type="range"
+          min={0}
+          max={214}
+          value={Networkspeed[1]}
+          onChange={(e) => setNetworkspeed([Networkspeed[0], e.target.valueAsNumber])}
           className="w-full mt-1"
         />
       </div>
