@@ -19,6 +19,31 @@
       "RunningCost": "$8",
       "Cost": "$40",
       "Findings": "Running smoothly"
+    },
+    {
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
+    }  ,{
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
+    } , {
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
+    } , {
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
     }
   ]
   

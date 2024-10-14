@@ -1,11 +1,10 @@
-import React from 'react';
+import Table from "../components/Table";
+function Usage () {
 
-const Usage = () => {
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>About Us</h1>
-      <p>Learn more about ShopOnez and our mission.</p>
-    </div>
+  return ( 
+  <div className="container mx-auto mt-10">
+   <Table/>
+  </div>
   );
 };
 
