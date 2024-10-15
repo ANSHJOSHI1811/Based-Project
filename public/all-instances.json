@@ -106,60 +106,6 @@
         "bandwidth": "0 MBps",
         "networkSpeed": "625 MBps",
         "location": "$0.0031"
-      },
-      {
-        "name": "t3a.nano Linux",
-        "cpu": 2,
-        "ram": "536 MB",
-        "disk": "0 MB",
-        "bandwidth": "0 MBps",
-        "networkSpeed": "625 MBps",
-        "location": "$0.0031"
-      },
-      {
-        "name": "t3a.nano Linux",
-        "cpu": 2,
-        "ram": "536 MB",
-        "disk": "0 MB",
-        "bandwidth": "0 MBps",
-        "networkSpeed": "625 MBps",
-        "location": "$0.0031"
-      },
-      {
-        "name": "t3a.nano Linux",
-        "cpu": 2,
-        "ram": "536 MB",
-        "disk": "0 MB",
-        "bandwidth": "0 MBps",
-        "networkSpeed": "625 MBps",
-        "location": "$0.0031"
-      },
-      {
-        "name": "t3a.nano Linux",
-        "cpu": 2,
-        "ram": "536 MB",
-        "disk": "0 MB",
-        "bandwidth": "0 MBps",
-        "networkSpeed": "625 MBps",
-        "location": "$0.0031"
-      },
-      {
-        "name": "t3a.nano Linux",
-        "cpu": 2,
-        "ram": "536 MB",
-        "disk": "0 MB",
-        "bandwidth": "0 MBps",
-        "networkSpeed": "625 MBps",
-        "location": "$0.0031"
-      },
-      {
-        "name": "t3a.nano Linux",
-        "cpu": 2,
-        "ram": "536 MB",
-        "disk": "0 MB",
-        "bandwidth": "0 MBps",
-        "networkSpeed": "625 MBps",
-        "location": "$0.0031"
       }
   ]
   
