@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="bg-[#121215] text-white p-3">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold">Holori</div>
+        <div className="text-2xl font-bold">CloudX</div>
         <div className="flex space-x-4">
           <button
             className="flex items-center px-4 py-2 text-lg font-medium rounded-lg 

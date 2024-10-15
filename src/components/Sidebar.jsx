@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RangeSlider from '../components/Slider';
 
 const Sidebar = () => {
   const [currency, setCurrency] = useState('USD');
@@ -33,22 +34,7 @@ const Sidebar = () => {
           <span>${price[0].toFixed(4)}</span>
           <span>${price[1].toFixed(3)}</span>
         </div>
-        <input
-          type="range"
-          min={0.0028}
-          max={784.896}
-          value={price[0]}
-          onChange={(e) => setPrice([e.target.valueAsNumber, price[1]])}
-          className="w-full"
-        />
-        <input
-          type="range"
-          min={0.0028}
-          max={784.896}
-          value={price[1]}
-          onChange={(e) => setPrice([price[0], e.target.valueAsNumber])}
-          className="w-full mt-1"
-        />
+    <RangeSlider/>
       </div>
 
       <div className="mb-6">

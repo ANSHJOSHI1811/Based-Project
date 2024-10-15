@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-[#121215] text-white p-6">
       <div className="container mx-auto flex justify-between items-center">
         {/* Copyright */}
-        <div className="text-sm">&copy; 2024 MyWebsite. All Rights Reserved.</div>
+        <div className="text-sm">&copy; 2024 CloudX. All Rights Reserved.</div>
 
         {/* Footer Links */}
         <div className="space-x-6">
