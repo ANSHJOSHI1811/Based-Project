@@ -44,6 +44,52 @@
       "RunningCost": "$8",
       "Cost": "$40",
       "Findings": "Running smoothly"
+    },
+    {
+      "Instance": "i-01",
+      "Region": "us-east-1",
+      "RunningCost": "$10",
+      "Cost": "$50",
+      "Findings": "No issues"
+    },
+    {
+      "Instance": "i-02",
+      "Region": "us-west-2",
+      "RunningCost": "$15",
+      "Cost": "$80",
+      "Findings": "Security updates needed"
+    },
+    {
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
+    },
+    {
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
+    }  ,{
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
+    } , {
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
+    } , {
+      "Instance": "i-03",
+      "Region": "eu-central-1",
+      "RunningCost": "$8",
+      "Cost": "$40",
+      "Findings": "Running smoothly"
     }
   ]
   

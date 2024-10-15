@@ -6,7 +6,7 @@ import { TbPigMoney } from "react-icons/tb";
 const SomeDetails = () => {
   return (
   <>    
-  <div className="container mx-auto mt-10 w-5/6 drop-shadow-xl overflow-hidden shadow-xl bg-white p-5 rounded-lg">
+  <div className="container mx-auto mt-10 w-[1200px] drop-shadow-xl overflow-hidden shadow-xl bg-white p-5 rounded-lg">
         {/* Header Section */}
         <div className="grid grid-cols-4 gap-2 mt-2 ml-10">
           <div className="col-span-2 text-3xl font-semibold text-indigo-400">Welcome {"TCS-mdn"}</div>
