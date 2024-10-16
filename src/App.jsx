@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Usage from './pages/Usage';
 import MoreDetailes from './pages/MoreDetailes.jsx';
+import ErrorPage from './pages/Errorpage'; 
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/usage" element={<Usage />} />
         <Route path="/detailes" element={<MoreDetailes />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>
