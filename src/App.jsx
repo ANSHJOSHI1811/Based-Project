@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Usage from './pages/Usage';
-import MoreDetailes from './pages/MoreDetailes.jsx';
+import MoreDetailes from './pages/MoreDetails.jsx';
 
 function App() {
   return (
