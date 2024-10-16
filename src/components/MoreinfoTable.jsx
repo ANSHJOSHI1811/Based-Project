@@ -83,12 +83,12 @@ const MoreinfoTable = () => {
             <thead className="sticky top-0 bg-white">
               <tr className="text-center border-b border-gray-300">
                 <th className="p-3">Name</th>
-                <th className="p-3">CPU<RiArrowUpDownLine/></th>
-                <th className="p-3">RAM<RiArrowUpDownLine/></th>
-                <th className="p-3">Disk <RiArrowUpDownLine/></th>
-                <th className="p-3">Bandwidth <RiArrowUpDownLine/></th>
-                <th className="p-3">Network Speed<RiArrowUpDownLine/></th>
-                <th className="p-3">Location<RiArrowUpDownLine/>   </th>
+                <th className="p-3">CPU</th>
+                <th className="p-3">RAM</th>
+                <th className="p-3">Disk </th>
+                <th className="p-3">Bandwidth </th>
+                <th className="p-3">Network Speed</th>
+                <th className="p-3">Location</th>
                 <th className="p-3">Price</th>
               </tr>
             </thead>
