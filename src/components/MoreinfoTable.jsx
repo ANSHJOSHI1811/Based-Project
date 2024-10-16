@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { RiArrowUpDownLine } from "react-icons/ri";
 const MoreinfoTable = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +49,7 @@ const MoreinfoTable = () => {
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto ">
         <div className="text-left text-gray-700 mb-4">
           <p>{data.length} offers found</p>
           <p className="text-right text-sm">
@@ -81,17 +81,14 @@ const MoreinfoTable = () => {
         <div className="overflow-y-auto border border-gray-300 rounded-md" style={{ height : "512px"}}>
           <table className="min-w-full bg-white">
             <thead className="sticky top-0 bg-white">
-              <tr className="text-left border-b border-gray-300">
-                <th className="p-3">
-                  <input type="checkbox" />
-                </th>
+              <tr className="text-center border-b border-gray-300">
                 <th className="p-3">Name</th>
-                <th className="p-3">CPU</th>
-                <th className="p-3">RAM</th>
-                <th className="p-3">Disk</th>
-                <th className="p-3">Bandwidth</th>
-                <th className="p-3">Network Speed</th>
-                <th className="p-3">Location</th>
+                <th className="p-3">CPU<RiArrowUpDownLine/></th>
+                <th className="p-3">RAM<RiArrowUpDownLine/></th>
+                <th className="p-3">Disk <RiArrowUpDownLine/></th>
+                <th className="p-3">Bandwidth <RiArrowUpDownLine/></th>
+                <th className="p-3">Network Speed<RiArrowUpDownLine/></th>
+                <th className="p-3">Location<RiArrowUpDownLine/>   </th>
                 <th className="p-3">Price</th>
               </tr>
             </thead>

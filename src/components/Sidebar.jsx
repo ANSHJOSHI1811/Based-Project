@@ -12,7 +12,7 @@ const Sidebar = () => {
   const [Networkspeed,setNetworkspeed]=useState([0,400]);
 
   return (
-    <div className="w-72 bg-white p-4 shadow-lg h-screen top-0 p-4 overflow-y-auto">
+    <div className="bg-white p-4 shadow-lg h-screen  p-4 overflow-y-auto rounded-md ">
       <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
       <div className="mb-6">
