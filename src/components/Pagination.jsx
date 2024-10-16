@@ -17,17 +17,18 @@ const Pagination = ({ totalPages, currentPage, handlePageChange }) => {
   };
 
   return (
-    <div className="join mt-4">
-      {generatePageNumbers().map((page, index) => (
-        <button
-          key={index}
-          className={`join-item btn ${page === currentPage ? 'btn-active' : ''} ${page === '...' ? 'btn-disabled' : ''}`}
-          onClick={() => handlePageChange(page)}
-        >
-          {page}
-        </button>
-      ))}
-    </div>
+    <div className="join mt-4 flex justify-center">
+    {generatePageNumbers().map((page, index) => (
+      <button
+        key={index}
+        className={`join-item btn border border-gray-300 rounded-lg px-4 py-2 mx-1 transition duration-200 ease-in-out ${page === currentPage ? 'btn-active bg-blue-500 text-white' : 'bg-white text-gray-700'} ${page === '...' ? 'btn-disabled text-gray-400' : ''}`}
+        onClick={() => handlePageChange(page)}
+      >
+        {page}
+      </button>
+    ))}
+  </div>
+  
   );
 };
 
