@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import RangeSlider from '../components/Slider';
 
 const Sidebar = () => {
   const [currency, setCurrency] = useState('USD');
   const [price, setPrice] = useState([0.0028, 784.896]);
   const [cpu, setCpu] = useState([0, 896]);
   const [ram, setRam] = useState([0, 35]);
-  const [disk,setdisk]=useState([0,360]);
-  const [GPU, setGpu]=useState([0,16]);
-  const [Bandwidth,setBandwidth]=useState([0,214]);
-  const [Networkspeed,setNetworkspeed]=useState([0,400]);
+  const [disk, setdisk] = useState([0, 360]);
+  const [GPU, setGpu] = useState([0, 16]);
+  const [Bandwidth, setBandwidth] = useState([0, 214]);
+  const [Networkspeed, setNetworkspeed] = useState([0, 400]);
 
   return (
     <div className="bg-white p-4 shadow-lg h-screen  p-4 overflow-y-auto rounded-md ">
@@ -34,8 +33,16 @@ const Sidebar = () => {
           <span>${price[0].toFixed(4)}</span>
           <span>${price[1].toFixed(3)}</span>
         </div>
-    <RangeSlider/>
+        <input
+          type="range"
+          min={0.0028}
+          max={784.896}
+          value={price[0]}
+          onChange={(e) => setPrice([e.target.valueAsNumber, price[1]])}
+          className="w-full"
+        />
       </div>
+
 
       <div className="mb-6">
         <label className="block mb-2 font-medium">Location</label>
@@ -80,15 +87,8 @@ const Sidebar = () => {
           onChange={(e) => setCpu([e.target.valueAsNumber, cpu[1]])}
           className="w-full"
         />
-        <input
-          type="range"
-          min={0}
-          max={896}
-          value={cpu[1]}
-          onChange={(e) => setCpu([cpu[0], e.target.valueAsNumber])}
-          className="w-full mt-1"
-        />
       </div>
+
 
       <div className="mb-6">
         <label className="block mb-2 font-medium">RAM</label>
@@ -103,14 +103,6 @@ const Sidebar = () => {
           value={ram[0]}
           onChange={(e) => setRam([e.target.valueAsNumber, ram[1]])}
           className="w-full"
-        />
-        <input
-          type="range"
-          min={0}
-          max={35}
-          value={ram[1]}
-          onChange={(e) => setRam([ram[0], e.target.valueAsNumber])}
-          className="w-full mt-1"
         />
       </div>
 
@@ -128,15 +120,8 @@ const Sidebar = () => {
           onChange={(e) => setdisk([e.target.valueAsNumber, disk[1]])}
           className="w-full"
         />
-        <input
-          type="range"
-          min={0}
-          max={360}
-          value={disk[1]}
-          onChange={(e) => setdisk([disk[0], e.target.valueAsNumber])}
-          className="w-full mt-1"
-        />
       </div>
+
 
       <div className="mb-6">
         <label className="block mb-2 font-medium">GPU</label>
@@ -149,19 +134,12 @@ const Sidebar = () => {
           min={0}
           max={16}
           value={GPU[0]}
-          onChange={(e) => setGpu([e.target.valueAsNumber, GPU[1]])}
+          onChange={(e) => setGpu([e.target.valueAsNumber, e.target.valueAsNumber])}
           className="w-full"
         />
-        <input
-          type="range"
-          min={0}
-          max={16}
-          value={GPU[1]}
-          onChange={(e) => setGpu([GPU[0], e.target.valueAsNumber])}
-          className="w-full mt-1"
-        />
       </div>
-      
+
+
       <div className="mb-6">
         <label className="block mb-2 font-medium">Bandwidth</label>
         <div className="flex justify-between text-sm mb-2">
@@ -176,15 +154,8 @@ const Sidebar = () => {
           onChange={(e) => setBandwidth([e.target.valueAsNumber, Bandwidth[1]])}
           className="w-full"
         />
-        <input
-          type="range"
-          min={0}
-          max={214}
-          value={Bandwidth[1]}
-          onChange={(e) => setBandwidth([Bandwidth[0], e.target.valueAsNumber])}
-          className="w-full mt-1"
-        />
       </div>
+
 
       <div className="mb-6">
         <label className="block mb-2 font-medium">Network Speed</label>
@@ -200,15 +171,8 @@ const Sidebar = () => {
           onChange={(e) => setNetworkspeed([e.target.valueAsNumber, Networkspeed[1]])}
           className="w-full"
         />
-        <input
-          type="range"
-          min={0}
-          max={214}
-          value={Networkspeed[1]}
-          onChange={(e) => setNetworkspeed([Networkspeed[0], e.target.valueAsNumber])}
-          className="w-full mt-1"
-        />
       </div>
+
     </div>
   );
 };
