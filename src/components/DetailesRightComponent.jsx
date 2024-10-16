@@ -54,27 +54,27 @@ const MoreinfoTable = () => {
 
   return (
     <div className="container mx-auto">
-          <div className="grid grid-cols-4 gap-2 mt-2 ml-10">
-          <div className="col-span-2 text-left text-gray-700 mb-4">
-        <p>{data.length} offers found</p>
-      </div>
-
-      {/* Dropdown for selecting rows per page */}
-      <div className=" col-span-2 mb-4 text-right">
-      <span className="ml-2 mr-4">Entries per page</span>
-        <select
-          className="select select-bordered bg-white rounded-md border-solid border-2 ml-2 mr-4 px-2 py-2 "
-          value={rowsPerPage}
-          onChange={handleRowsPerPageChange}
-        >
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={50}>50</option>
-        </select>
-      </div>
-
+      <div className="grid grid-cols-4 gap-2 mt-2 ml-10">
+        <div className="col-span-2 text-left text-gray-700 mb-4">
+          <p>{data.length} offers found</p>
         </div>
-      
+
+        {/* Dropdown for selecting rows per page */}
+        <div className=" col-span-2 mb-4 text-right">
+          <span className="ml-2 mr-4">Entries per page</span>
+          <select
+            className="select select-bordered bg-white rounded-md border-solid border-2 ml-2 mr-4 px-2 py-2 "
+            value={rowsPerPage}
+            onChange={handleRowsPerPageChange}
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+
+      </div>
+
 
       {/* Scrollable Table Container */}
       <div className="overflow-y-auto border border-gray-300 rounded-md" style={{ height: "512px" }}>
