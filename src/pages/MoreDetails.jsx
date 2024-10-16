@@ -1,8 +1,8 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import MoreinfoTable from '../components/MoreinfoTable';
+import MoreinfoTable from '../components/DetailesRightComponent';
 
-function MoreDetailes() {
+function MoreDetails() {
 
   return (
     <div className="grid grid-cols-12 gap-2 ml-10 flex h-screen grid-rows-1 mt-5">
@@ -17,4 +17,4 @@ function MoreDetailes() {
   );
 }
 
-export default MoreDetailes;
+export default MoreDetails;
