@@ -6,6 +6,7 @@ const InstanceDetails = ({ data, selectedRows, handleRowSelect, handleSelectAll 
   const isAllSelected = data.every(row => selectedRows.includes(row.id));
 
   return (
+    <div className="overflow-y-auto border border-gray-300 rounded-md" style={{ height: "512px" }}>
     <table className="min-w-full bg-white">
       <thead className="sticky top-0 bg-white">
         <tr className="text-left border-b border-gray-300">
@@ -60,6 +61,8 @@ const InstanceDetails = ({ data, selectedRows, handleRowSelect, handleSelectAll 
         ))}
       </tbody>
     </table>
+    </div>
+
   );
 };
 

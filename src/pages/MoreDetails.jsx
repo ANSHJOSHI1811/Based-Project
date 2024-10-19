@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import MoreinfoTable from '../components/DetailesRightComponent';
+import MoreinfoTable from '../components/DetaileContainer';
 
 function MoreDetails() {
 
