@@ -1,6 +1,8 @@
+// MoreinfoTable.js
 import React, { useEffect, useState } from 'react';
-import InstanceDetails from './InstanceDetails';
-import Pagination from './Pagination';
+import InstanceDetails from './InstanceDetailsTable';
+import RowsPerPageSelector from './RowsPerPageSelector';
+import PaginationComponent from './PaginationComponent';
 
 const MoreinfoTable = () => {
   const [data, setData] = useState([]);
@@ -8,7 +10,6 @@ const MoreinfoTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedRows, setSelectedRows] = useState([]);
 
-  // Fetch data
   useEffect(() => {
     fetch('/all-instances.json')
       .then((response) => response.json())
@@ -16,33 +17,26 @@ const MoreinfoTable = () => {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
-  // Calculate the index range for the current page
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);
-
-  // Total number of pages
   const totalPages = Math.ceil(data.length / rowsPerPage);
 
-  // Handle page change
   const handlePageChange = (page) => {
     if (page !== '...') setCurrentPage(page);
   };
 
-  // Handle change in rows per page
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(Number(event.target.value));
     setCurrentPage(1);
   };
 
-  // Handle individual row selection
   const handleRowSelect = (id) => {
     setSelectedRows((prev) =>
       prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
     );
   };
 
-  // Handle "Select All" checkbox
   const handleSelectAll = () => {
     if (currentRows.every((row) => selectedRows.includes(row.id))) {
       setSelectedRows((prev) => prev.filter((id) => !currentRows.some((row) => row.id === id)));
@@ -59,35 +53,20 @@ const MoreinfoTable = () => {
           <p>{data.length} offers found</p>
         </div>
 
-        {/* Dropdown for selecting rows per page */}
-        <div className=" col-span-2 mb-4 text-right">
-          <span className="ml-2 mr-4">Entries per page</span>
-          <select
-            className="select select-bordered bg-white rounded-md border-solid border-2 ml-2 mr-4 px-2 py-2 "
-            value={rowsPerPage}
-            onChange={handleRowsPerPageChange}
-          >
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-          </select>
-        </div>
-
-      </div>
-
-
-      {/* Scrollable Table Container */}
-      <div className="overflow-y-auto border border-gray-300 rounded-md" style={{ height: "512px" }}>
-        <InstanceDetails
-          data={currentRows}
-          selectedRows={selectedRows}
-          handleRowSelect={handleRowSelect}
-          handleSelectAll={handleSelectAll}
+        <RowsPerPageSelector
+          rowsPerPage={rowsPerPage}
+          handleRowsPerPageChange={handleRowsPerPageChange}
         />
       </div>
 
-      {/* Pagination Controls */}
-      <Pagination
+      <InstanceDetails
+        data={currentRows}
+        selectedRows={selectedRows}
+        handleRowSelect={handleRowSelect}
+        handleSelectAll={handleSelectAll}
+      />
+
+      <PaginationComponent
         totalPages={totalPages}
         currentPage={currentPage}
         handlePageChange={handlePageChange}
