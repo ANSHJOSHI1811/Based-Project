@@ -1,9 +1,9 @@
 // Usage.js
 import React, { useState, useEffect } from 'react';
-import UsageTable from "../components/UsageTable"
-import PaginationComponent from "../components/PaginationComponent";
-import RowsPerPageSelector from "../components/RowsPerPageSelector";
-import SomeDetails from "../components/SomeDetails";
+import UsageTable from "../components/UserUsageTable"
+import PaginationComponent from "../components/Pagination";
+import RowsPerPageSelector from "../components/RowsSelector";
+import SomeDetails from "../components/UserInfo";
 
 function Usage() {
   const [instances, setInstances] = useState([]); // Complete data

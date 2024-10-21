@@ -3,17 +3,18 @@ import { BiMoney } from "react-icons/bi";
 import { TbReportMoney } from "react-icons/tb";
 import { TbZoomMoney } from "react-icons/tb";
 import { TbPigMoney } from "react-icons/tb";
+
 const SomeDetails = () => {
   return (
-  <>    
-  <div className="container mx-auto mt-10 w-[1200px] drop-shadow-xl overflow-hidden shadow-xl bg-white p-5 rounded-lg">
+    <>
+      <div className="container mx-auto mt-10 w-[1200px] drop-shadow-xl overflow-hidden shadow-xl bg-white p-5 rounded-lg">
         {/* Header Section */}
         <div className="grid grid-cols-4 gap-2 mt-2 ml-10">
           <div className="col-span-2 text-3xl font-semibold text-indigo-400">Welcome {"TCS-mdn"}</div>
           <div className="col-span-2 mt-3 font-semibold  text-gray-600 text-right mr-10">From Date : {"10.09.2024"} - {"20.09.2024"}</div>
           <div className="-mt-1 col-span-2 text-sm text-gray-500">Acc. Number: {123456789}</div>
         </div>
-<br/>
+        <br />
         {/* Budget Details Section */}
         <div className="grid grid-cols-12 gap-4 mt-5 text-gray-600">
           <div className="col-span-6 flex items-center  space-x-2 ml-20 ">
@@ -40,7 +41,7 @@ const SomeDetails = () => {
             <span>{11.5}</span>
           </div>
         </div>
-      </div>    
+      </div>
     </>
 
   )

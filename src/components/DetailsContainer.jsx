@@ -1,14 +1,17 @@
 // MoreinfoTable.js
 import React, { useEffect, useState } from 'react';
-import InstanceDetails from './InstanceDetailsTable';
-import RowsPerPageSelector from './RowsPerPageSelector';
-import PaginationComponent from './PaginationComponent';
+import InstanceDetails from './DetailsInstanceTable';
+import RowsPerPageSelector from './RowsSelector';
+import PaginationComponent from './Pagination';
+import InfoModal from './DetailsInstanceInfo';
 
 const MoreinfoTable = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+  const [selectedInstance, setSelectedInstance] = useState(null); // Store the clicked instance
 
   useEffect(() => {
     fetch('/all-instances.json')
@@ -46,6 +49,16 @@ const MoreinfoTable = () => {
     }
   };
 
+  const openModal = (instance) => {
+    setSelectedInstance(instance); // Set the clicked instance data
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+    setSelectedInstance(null); // Reset the selected instance
+  };
+
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-4 gap-2 mt-2 ml-10">
@@ -64,6 +77,7 @@ const MoreinfoTable = () => {
         selectedRows={selectedRows}
         handleRowSelect={handleRowSelect}
         handleSelectAll={handleSelectAll}
+        openModal={openModal}
       />
 
       <PaginationComponent
@@ -71,6 +85,10 @@ const MoreinfoTable = () => {
         currentPage={currentPage}
         handlePageChange={handlePageChange}
       />
+
+      {isModalOpen && (
+        <InfoModal instance={selectedInstance} isOpen={isModalOpen} onClose={closeModal} />
+      )}
     </div>
   );
 };
