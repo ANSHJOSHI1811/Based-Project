@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from 'react';
+// UserUsageTable.js
+import React from 'react';
 
-function Table() {
-  const [instances, setInstances] = useState([]);
-
-  // Fetch the JSON file data
-  useEffect(() => {
-    fetch('/aws-instances.json')
-      .then(response => response.json())
-      .then(data => setInstances(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
-
+function UsageTable({ instances }) {
   return (
     <div className="w-full overflow-x-auto">
       <div className="w-[1200px] mx-auto overflow-hidden rounded-lg shadow-md">
@@ -26,7 +17,6 @@ function Table() {
           </thead>
         </table>
 
-        {/* Scrollable Table Body */}
         <div className="h-96 overflow-y-auto">
           <table className="table-fixed min-w-full">
             <tbody>
@@ -47,4 +37,4 @@ function Table() {
   );
 }
 
-export default Table;
+export default UsageTable;

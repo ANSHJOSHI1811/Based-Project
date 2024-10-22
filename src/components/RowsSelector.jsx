@@ -1,9 +1,8 @@
 // RowsPerPageSelector.js
 import React from 'react';
-
 const RowsPerPageSelector = ({ rowsPerPage, handleRowsPerPageChange }) => {
   return (
-    <div className="col-span-2 mb-4 text-right">
+    <div className="col-span-2 mb-4 mr-8 text-right">
       <span className="ml-2 mr-4">Entries per page</span>
       <select
         className="select select-bordered bg-white rounded-md border-solid border-2 ml-2 mr-4 px-2 py-2"
