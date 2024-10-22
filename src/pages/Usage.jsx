@@ -1,6 +1,6 @@
 // Usage.js
 import React, { useState, useEffect } from 'react';
-import UsageTable from "../components/UserUsageTable"
+import UsageTable from "../components/UserUsageTable"; // Correct component name
 import PaginationComponent from "../components/Pagination";
 import RowsPerPageSelector from "../components/RowsSelector";
 import SomeDetails from "../components/UserInfo";
@@ -13,9 +13,9 @@ function Usage() {
   // Fetch the data
   useEffect(() => {
     fetch('/aws-instances.json')
-      .then(response => response.json())
-      .then(data => setInstances(data))
-      .catch(error => console.error('Error fetching data:', error));
+      .then((response) => response.json())
+      .then((data) => setInstances(data))
+      .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
   // Calculate total pages based on data length and rows per page
@@ -35,25 +35,28 @@ function Usage() {
   // Handle rows per page change
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setCurrentPage(1); // Reset to the first page
+    setCurrentPage(1); // Reset to the first page on rows change
   };
 
   return (
     <>
       <SomeDetails />
       <div className="container mx-auto mt-10 w-5/6">
+     
         <RowsPerPageSelector
           rowsPerPage={rowsPerPage}
           handleRowsPerPageChange={handleRowsPerPageChange}
-        />
+      />
         
         <UsageTable instances={paginatedData} />
-        
+   
+
         <PaginationComponent
           totalPages={totalPages}
           currentPage={currentPage}
           handlePageChange={handlePageChange}
-        />
+        />        
+
       </div>
     </>
   );
