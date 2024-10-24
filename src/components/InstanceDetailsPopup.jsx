@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InfoModal = ({ instance, isOpen, onClose }) => {
+const DetailsInstanceInfo = ({ instance, isOpen, onClose }) => {
   if (!isOpen || !instance) return null; // Only render modal if open and an instance is selected
 
   return (
@@ -13,12 +13,8 @@ const InfoModal = ({ instance, isOpen, onClose }) => {
           {/* Instance name with logo */}
           <div>
             <h3 className="text-lg font-bold flex items-center">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/873/873120.png"
-                alt="Instance Logo"
-                className="w-6 h-6 mr-2"
-              />
               {instance.name}
+              {instance.provider}
             </h3>
           </div>
 
@@ -66,4 +62,4 @@ const InfoModal = ({ instance, isOpen, onClose }) => {
   );
 };
 
-export default InfoModal;
+export default DetailsInstanceInfo;
