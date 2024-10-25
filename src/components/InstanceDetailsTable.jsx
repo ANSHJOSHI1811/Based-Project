@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaLocationDot } from "react-icons/fa6";
 
-const DetailsInstanceTable = ({ data, openModal }) => {
+const InstanceDetailsTable = ({ data, openModal }) => {
   if (!data || data.length === 0) {
     return <div>No instances found</div>;
   }
@@ -52,4 +52,4 @@ const DetailsInstanceTable = ({ data, openModal }) => {
   );
 };
 
-export default DetailsInstanceTable;
+export default InstanceDetailsTable;

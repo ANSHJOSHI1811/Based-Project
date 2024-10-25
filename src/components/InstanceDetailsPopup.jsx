@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DetailsInstanceInfo = ({ instance, isOpen, onClose }) => {
+const InstanceDetailsPopup = ({ instance, isOpen, onClose }) => {
   if (!isOpen || !instance) return null; // Only render modal if open and an instance is selected
 
   return (
@@ -62,4 +62,4 @@ const DetailsInstanceInfo = ({ instance, isOpen, onClose }) => {
   );
 };
 
-export default DetailsInstanceInfo;
+export default InstanceDetailsPopup;

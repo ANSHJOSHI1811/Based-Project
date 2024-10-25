@@ -4,7 +4,7 @@ import RowsPerPageSelector from './RowsSelector';
 import PaginationComponent from './Pagination';
 import DetailsInstanceInfo from './InstanceDetailsPopup';
 
-const MoreInfoTable = () => {
+const InstanceContainer = () => {
   const [data, setData] = useState([]);
   const [currentRows, setCurrentRows] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState('');
@@ -199,4 +199,4 @@ const MoreInfoTable = () => {
   );
 };
 
-export default MoreInfoTable;
+export default InstanceContainer;
