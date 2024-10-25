@@ -1,11 +1,10 @@
 import React from 'react';
-import Sidebar from '../components/DetailsSidebar';
-import MoreinfoTable from '../components/InstanceDetailsContainer';
+import InstanceContainer from '../components/InstanceContainer';
 
 function MoreDetails() {
 
   return (
-        <MoreinfoTable />
+        <InstanceContainer />
   );
 }
 

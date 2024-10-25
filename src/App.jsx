@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Usage from './pages/Usage';
 import MoreDetailes from './pages/Details.jsx';
 import ErrorPage from './pages/Errorpage'; 
-
+import 'react-loading-skeleton/dist/skeleton.css'
 function App() {
   return (
     <div>
