@@ -15,9 +15,9 @@ const InstanceDetailsTable = ({ data, openModal }) => {
             <th className="p-3">Name</th>
             <th className="p-3">CPU</th>
             <th className="p-3">RAM</th>
-            <th className="p-3">Disk</th>
-            <th className="p-3">Bandwidth</th>
-            <th className="p-3">Network Speed</th>
+            <th className="p-3">Instance type</th>
+            <th className="p-3">Storage</th>
+            <th className="p-3">Operating System</th>
             <th className="p-3">Location</th>
             <th className="p-3">Price</th>
           </tr>
@@ -33,9 +33,9 @@ const InstanceDetailsTable = ({ data, openModal }) => {
               <td className="p-3">{row.name}</td>
               <td className="p-3">{row.cpu}</td>
               <td className="p-3">{row.ram}</td>
-              <td className="p-3">{row.disk}</td>
-              <td className="p-3">{row.bandwidth}</td>
-              <td className="p-3">{row.networkSpeed}</td>
+              <td className="p-3">{row.instancetype}</td>
+              <td className="p-3">{row.storage}</td>
+              <td className="p-3">{row.operatingsystem}</td>
               <td className="p-3 relative group">
                 <FaLocationDot />
                 <span className="absolute left-8 top-0 w-max bg-black text-white text-xs rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
