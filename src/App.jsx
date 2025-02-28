@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Usage from './pages/Usage';
 import MoreDetailes from './pages/Details.jsx';
+import SavingPlan from './pages/savingPlan.jsx';
 import ErrorPage from './pages/Errorpage'; 
 import 'react-loading-skeleton/dist/skeleton.css'
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/usage" element={<Usage />} />
         <Route path="/details" element={<MoreDetailes />} />
+        <Route path="/savingPlan" element={<SavingPlan/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
