@@ -36,9 +36,18 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-4xl w-full max-h-[80vh] overflow-y-auto">
         {/* Header */}
         <div className="flex justify-between items-start">
-          <h3 className="text-lg font-bold">
-            {instance.name} ({instance.provider})
-          </h3>
+          <div>
+            {/* Instance Type and Location Display */}
+            <p className="text-gray-600 text-sm mt-1">
+              <strong>Instance Type:</strong> {instance.InstanceType}
+            </p>
+            <p className="text-gray-600 text-sm">
+              <strong>Price:</strong> {instance.Prices?.[0]?.PricePerUnit || "N/A"}
+            </p>
+            <p className="text-gray-600 text-sm">
+              <strong>Location:</strong> {instance.RegionCode}
+            </p>
+          </div>
           <button className="text-gray-600 hover:text-gray-800" onClick={onClose}>
             ✕
           </button>

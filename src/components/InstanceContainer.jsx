@@ -7,6 +7,7 @@ const InstanceContainer = () => {
   const [selectedInstance, setSelectedInstance] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [rowID, setRowID] = useState(null);
+  
   useEffect(() => {
     fetch("/all-instances.json")
       .then((res) => res.json())
