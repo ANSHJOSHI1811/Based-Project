@@ -97,3 +97,4 @@ const SavingDetailsPopup = ({ instance, isOpen, onClose ,rowID }) => {
 };
 
 export default SavingDetailsPopup;
+

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
   const [priceAndTermsData, setPriceAndTermsData] = useState([]);
@@ -37,10 +39,12 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
         {/* Header */}
         <div className="flex justify-between items-start">
           <div>
-            {/* Instance Type and Location Display */}
             <p className="text-gray-600 text-sm mt-1">
               <strong>Instance Type:</strong> {instance.InstanceType}
             </p>
+            <Link to={`/sku/${rowID}`} className="text-blue-500 hover:underline ml-2">
+              View Details
+            </Link>
             <p className="text-gray-600 text-sm">
               <strong>Price:</strong> {instance.Prices?.[0]?.PricePerUnit || "N/A"}
             </p>
@@ -48,18 +52,15 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
               <strong>Location:</strong> {instance.RegionCode}
             </p>
           </div>
+          {/* Close Button - Only way to close the popup */}
           <button className="text-gray-600 hover:text-gray-800" onClick={onClose}>
             ✕
           </button>
         </div>
 
-        {/* Loading State */}
         {loading && <p className="text-center text-gray-600 mt-4">Loading details...</p>}
-
-        {/* Error State */}
         {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
-        {/* Scrollable Table Container */}
         {!loading && !error && (
           <div className="mt-4">
             <div className="max-h-64 overflow-y-auto border border-gray-300">
@@ -109,11 +110,9 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
           </div>
         )}
       </div>
-
-      {/* Close on backdrop click */}
-      <div className="fixed inset-0 bg-transparent" onClick={onClose}></div>
     </div>
   );
 };
 
 export default InstanceDetailsPopup;
+

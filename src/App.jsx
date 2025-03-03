@@ -7,6 +7,7 @@ import Usage from './pages/Usage';
 import MoreDetailes from './pages/Details.jsx';
 import SavingPlan from './pages/savingPlan.jsx';
 import ErrorPage from './pages/Errorpage'; 
+import SkuDetails from "./components/skuDetails.jsx";
 import 'react-loading-skeleton/dist/skeleton.css'
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/details" element={<MoreDetailes />} />
         <Route path="/savingPlan" element={<SavingPlan/>} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/sku/:sku_id" element={<SkuDetails />} />
       </Routes>
       <Footer />
     </div>
