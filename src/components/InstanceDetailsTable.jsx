@@ -10,6 +10,7 @@ const InstanceDetailsTable = ({ openModal }) => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [inputPage, setInputPage] = useState("");
 
   useEffect(() => {
     fetchData(currentPage, entriesPerPage);
@@ -39,7 +40,9 @@ const InstanceDetailsTable = ({ openModal }) => {
   };
 
   const handlePageClick = (page) => {
-    setCurrentPage(page);
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
 
   const getProviderLogo = (providerId) => {
@@ -69,7 +72,7 @@ const InstanceDetailsTable = ({ openModal }) => {
           totalPages,
         ];
       } else {
-        pages = [1, currentPage - 1, currentPage, currentPage + 1, totalPages];
+        pages = [1, currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, totalPages];
       }
     }
     return pages;
@@ -88,8 +91,8 @@ const InstanceDetailsTable = ({ openModal }) => {
           >
             <option value="5">5</option>
             <option value="10">10</option>
-            <option value="20">20</option>
             <option value="50">50</option>
+            <option value="100">100</option>
           </select>{" "}
           entries
         </label>
@@ -141,31 +144,12 @@ const InstanceDetailsTable = ({ openModal }) => {
         </tbody>
       </table>
       <div className="flex justify-center items-center p-3 bg-gray-100 border-t gap-2">
-        <button
-          onClick={() => handlePageClick(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
-        >
-          Previous
-        </button>
+        <button onClick={() => handlePageClick(currentPage - 5)} disabled={currentPage <= 5} className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50">Previous 5</button>
+        <input type="number" className="border px-2 py-1 w-16" value={inputPage} onChange={(e) => setInputPage(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handlePageClick(Number(inputPage))} placeholder="Page" />
         {getPageNumbers().map((page, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageClick(page)}
-            className={`px-3 py-1 rounded ${
-              currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
-          >
-            {page}
-          </button>
+          <button key={index} onClick={() => handlePageClick(page)} className={`px-3 py-1 rounded ${currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200"}`}>{page}</button>
         ))}
-        <button
-          onClick={() => handlePageClick(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
-        >
-          Next
-        </button>
+        <button onClick={() => handlePageClick(currentPage + 5)} disabled={currentPage + 5 > totalPages} className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50">Next 5</button>
       </div>
     </div>
   );
