@@ -98,7 +98,7 @@ const SavingDetailsTable = ({ openModal }) => {
             <tr
               key={index}
               className="border-b border-gray-200 hover:bg-gray-100 cursor-pointer transition"
-              onClick={() => openModal(row, row.ID)}
+              onClick={() => openModal(row, row.DiscountedSku)}
             >
                <td className="p-3 flex items-center gap-2">
                 {getProviderLogo(row.ProviderID) && (

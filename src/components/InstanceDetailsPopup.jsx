@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { MdArrowOutward } from "react-icons/md"; // Updated arrow icon
+import { X } from "lucide-react";
 
 const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
   const [priceAndTermsData, setPriceAndTermsData] = useState([]);
@@ -22,12 +23,12 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden"; // Freeze background
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto"; // Restore scrolling
+      document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.overflow = "auto"; // Cleanup when unmounting
+      document.body.style.overflow = "auto";
     };
   }, [isOpen]);
 
@@ -37,24 +38,17 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-4xl w-full max-h-[80vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex justify-between items-start">
-          <div>
-            <p className="text-gray-600 text-sm mt-1">
-              <strong>Instance Type:</strong> {instance.InstanceType}
-            </p>
-            <Link to={`/sku/${rowID}`} className="text-blue-500 hover:underline ml-2">
-              View Details
+        <div className="flex justify-between items-center border-b pb-3">
+          <div className="flex items-center gap-4 text-gray-700">
+            <span className="font-semibold">{instance.InstanceType}</span>
+            <Link to={`/sku/${rowID}`} className="text-blue-500 hover:text-blue-700">
+              <MdArrowOutward size={18} />
             </Link>
-            <p className="text-gray-600 text-sm">
-              <strong>Price:</strong> {instance.Prices?.[0]?.PricePerUnit || "N/A"}
-            </p>
-            <p className="text-gray-600 text-sm">
-              <strong>Location:</strong> {instance.RegionCode}
-            </p>
+            <span className="text-gray-600">{instance.RegionCode}</span>
+            <span className="text-gray-600">${instance.Prices?.[0]?.PricePerUnit || "N/A"}</span>
           </div>
-          {/* Close Button - Only way to close the popup */}
           <button className="text-gray-600 hover:text-gray-800" onClick={onClose}>
-            ✕
+            <X size={20} />
           </button>
         </div>
 
@@ -63,7 +57,7 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
 
         {!loading && !error && (
           <div className="mt-4">
-            <div className="max-h-64 overflow-y-auto border border-gray-300">
+            <div className="max-h-64 overflow-y-auto border border-gray-300 rounded-md">
               <table className="w-full border-collapse border border-gray-300">
                 <thead className="sticky top-0 bg-gray-200">
                   <tr>
@@ -115,4 +109,3 @@ const InstanceDetailsPopup = ({ instance, isOpen, onClose, rowID }) => {
 };
 
 export default InstanceDetailsPopup;
-
