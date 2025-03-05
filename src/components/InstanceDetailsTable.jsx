@@ -4,9 +4,11 @@ import awsLogo from "../assets/aws.png"; // AWS logo
 import azureLogo from "../assets/azure.png"; // Azure logo
 
 const InstanceDetailsTable = ({ openModal }) => {
+  const [providers, setProviders] = useState([]); // Store provider list
+  const [selectedProvider, setSelectedProvider] = useState(""); // Selected provider
+  const [regions, setRegions] = useState([]); // Store regions
+  const [selectedRegionCode, setSelectedRegionCode] = useState(""); // Selected RegionCode
   const [data, setData] = useState([]);
-  const [regions, setRegions] = useState([]); // Store regions from API
-  const [selectedRegionCode, setSelectedRegionCode] = useState(""); // Store selected RegionCode
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(10);
@@ -14,17 +16,33 @@ const InstanceDetailsTable = ({ openModal }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchRegions();
+    fetchProviders(); // Fetch providers on mount
   }, []);
+
+  useEffect(() => {
+    if (selectedProvider) fetchRegions(selectedProvider); // Fetch regions when provider changes
+  }, [selectedProvider]);
 
   useEffect(() => {
     fetchData(currentPage, entriesPerPage, selectedRegionCode);
   }, [currentPage, entriesPerPage, selectedRegionCode]);
 
-  // Fetch regions from API
-  const fetchRegions = async () => {
+  // Fetch providers from API
+  const fetchProviders = async () => {
     try {
-      const response = await fetch("http://localhost:8080/regions");
+      const response = await fetch("http://localhost:8080/providers");
+      if (!response.ok) throw new Error("Failed to fetch providers");
+      const result = await response.json();
+      setProviders(result.providers || []);
+    } catch (error) {
+      console.error("Error fetching providers:", error.message);
+    }
+  };
+
+  // Fetch regions based on selected provider
+  const fetchRegions = async (provider) => {
+    try {
+      const response = await fetch(`http://localhost:8080/regions?provider=${provider}`);
       if (!response.ok) throw new Error("Failed to fetch regions");
       const result = await response.json();
       setRegions(result || []);
@@ -40,8 +58,9 @@ const InstanceDetailsTable = ({ openModal }) => {
     try {
       let url = `http://localhost:8080/skus?page=${page}&limit=${limit}`;
       if (regionCode) {
-        url += `&region=${regionCode}`; // Add region as a query param
+        url += `&region=${regionCode}`;
       }
+  
 
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch data");
@@ -81,6 +100,27 @@ const InstanceDetailsTable = ({ openModal }) => {
           entries
         </label>
 
+        {/* Provider Filter Dropdown */}
+        <label className="text-sm">
+          Select Provider:
+          <select
+            value={selectedProvider}
+            onChange={(e) => {
+              setSelectedProvider(e.target.value);
+              setRegions([]); // Reset regions when provider changes
+              setSelectedRegionCode(""); // Reset selected region
+            }}
+            className="ml-2 p-1 border rounded"
+          >
+            <option value="">Select Provider</option>
+            {providers.map((provider, index) => (
+              <option key={index} value={provider}>
+                {provider}
+              </option>
+            ))}
+          </select>
+        </label>
+
         {/* Region Filter Dropdown */}
         <label className="text-sm">
           Filter by Region:
@@ -88,6 +128,7 @@ const InstanceDetailsTable = ({ openModal }) => {
             value={selectedRegionCode}
             onChange={(e) => setSelectedRegionCode(e.target.value)}
             className="ml-2 p-1 border rounded"
+            disabled={!selectedProvider} // Disable if no provider is selected
           >
             <option value="">All Regions</option>
             {regions.map((region) => (
@@ -138,13 +179,6 @@ const InstanceDetailsTable = ({ openModal }) => {
           ))}
         </tbody>
       </table>
-
-      {/* Pagination */}
-      <div className="flex justify-center items-center p-3 bg-gray-100 border-t gap-2">
-        <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50">Prev</button>
-        <span className="px-3 py-1">{currentPage} / {totalPages}</span>
-        <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50">Next</button>
-      </div>
     </div>
   );
 };
