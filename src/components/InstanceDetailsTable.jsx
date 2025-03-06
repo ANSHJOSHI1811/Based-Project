@@ -46,9 +46,12 @@ const InstanceDetailsTable = ({ data, openModal }) => {
               <td className="p-4">{row.Memory}</td>
               <td className="p-4">{row.Storage}</td>
               <td className="p-4">{row.Network}</td>
-              <td className="p-4 flex items-center gap-2 text-gray-700">
-                <FaLocationDot className="text-blue-500 text-lg" />
-                {row.RegionCode}
+              <td className="p-3 flex items-center gap-2 relative group">
+                <FaLocationDot className="text-blue-500" />
+                <span className="absolute left-8 top-0 bg-black text-white text-xs rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {row.RegionCode}
+                </span>
+                {row.Location}
               </td>
               <td className="p-4 font-semibold text-gray-900">
                 {row.Prices?.[0]?.PricePerUnit ? `$${row.Prices[0].PricePerUnit}` : "N/A"}
