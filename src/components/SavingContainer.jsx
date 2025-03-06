@@ -6,7 +6,7 @@ const SavingContainer = () => {
   const [data, setData] = useState([]);
   const [selectedInstance, setSelectedInstance] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [rowID, setRowID] = useState(null);
+  const [skuCode, setSkuCode] = useState(null);
   useEffect(() => {
     fetch("/all-instances.json")
       .then((res) => res.json())
@@ -14,9 +14,9 @@ const SavingContainer = () => {
       .catch((err) => console.error("Error fetching data:", err));
   }, []);
 
-  const openPopup = (instance, rowID) => {
+  const openPopup = (instance, skuCode) => {
     setSelectedInstance(instance);
-    setRowID(rowID); // rowID state me store karo
+    setSkuCode(skuCode);
     setIsPopupOpen(true);
   };
 
@@ -35,7 +35,7 @@ const SavingContainer = () => {
   instance={selectedInstance}
   isOpen={isPopupOpen}
   onClose={closePopup}
-  rowID={rowID}  // New prop pass kiya
+  skuCode={skuCode}  // New prop pass kiya
 />
     </div>
   );
