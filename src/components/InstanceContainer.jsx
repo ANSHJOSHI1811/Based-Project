@@ -10,6 +10,7 @@ const InstanceContainer = () => {
   const [selectedRegionCode, setSelectedRegionCode] = useState("");
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [vcpuRange, setVcpuRange] = useState([1, 64]);
   const [priceRange, setPriceRange] = useState([0, 10]);
@@ -26,7 +27,7 @@ const InstanceContainer = () => {
   }, [selectedProvider]);
 
   useEffect(() => {
-    fetchData();
+    fetchData(currentPage, entriesPerPage, selectedRegionCode, vcpuRange, priceRange);
   }, [currentPage, entriesPerPage, selectedRegionCode, vcpuRange, priceRange]);
 
   const fetchProviders = async () => {
@@ -42,7 +43,9 @@ const InstanceContainer = () => {
 
   const fetchRegions = async (provider) => {
     try {
-      const response = await fetch(`http://localhost:8080/regions?provider=${provider}`);
+      const response = await fetch(
+        `http://localhost:8080/regions?provider=${provider}`
+      );
       if (!response.ok) throw new Error("Failed to fetch regions");
       const result = await response.json();
       setRegions(result || []);
@@ -57,11 +60,13 @@ const InstanceContainer = () => {
       if (selectedRegionCode) url += `&region=${selectedRegionCode}`;
       url += `&minVcpu=${vcpuRange[0]}&maxVcpu=${vcpuRange[1]}`;
       url += `&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
-
+  
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch data");
+      
       const result = await response.json();
       setData(result.data || []);
+      setTotalPages(result.totalPages || 1); // ✅ Ensure totalPages is updated
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
@@ -107,6 +112,29 @@ const InstanceContainer = () => {
         onClose={closePopup}
         rowID={rowID}
       />
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center items-center space-x-4 p-4">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span className="text-gray-700">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
