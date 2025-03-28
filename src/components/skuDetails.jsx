@@ -47,8 +47,7 @@ const SkuDetails = () => {
             {/* Storage & Network Card */}
             <div className="bg-gray-100 p-4 rounded shadow">
               <h3 className="text-lg font-semibold">Storage & Network</h3>
-              <p><strong>EBS Optimized:</strong> {skuData.EBSOptimized}</p>
-              <p><strong>Max Bandwidth:</strong> {skuData.MaxBandwidth}</p>
+              <p><strong>Storage:</strong> {skuData.Storage}</p>
               <p><strong>Max IOPS:</strong> {skuData.MaxIOPS}</p>
               <p><strong>Max Throughput:</strong> {skuData.MaxThroughput}</p>
               <p><strong>Network Performance:</strong> {skuData.Network}</p>
