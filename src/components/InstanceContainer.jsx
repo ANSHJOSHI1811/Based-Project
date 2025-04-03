@@ -85,26 +85,33 @@ const InstanceContainer = () => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Instance Details</h2>
-      <div className="flex h-[560px] border border-gray-300 rounded-md shadow-md">
-        <InstanceDetailsFilter
-          providers={providers}
-          selectedProvider={selectedProvider}
-          setSelectedProvider={setSelectedProvider}
-          regions={regions}
-          selectedRegionCode={selectedRegionCode}
-          setSelectedRegionCode={setSelectedRegionCode}
-          vcpuRange={vcpuRange}
-          setVcpuRange={setVcpuRange}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          entriesPerPage={entriesPerPage}
-          setEntriesPerPage={setEntriesPerPage}
-          setRegions={setRegions} // Pass setRegions to the filter
-        />
-        <InstanceDetailsTable data={data} openModal={openPopup} />
+      
+      {/* Flex container for filter and table */}
+      <div className="flex ">
+    
+          <InstanceDetailsFilter className="w-2/6"
+            providers={providers}
+            selectedProvider={selectedProvider}
+            setSelectedProvider={setSelectedProvider}
+            regions={regions}
+            selectedRegionCode={selectedRegionCode}
+            setSelectedRegionCode={setSelectedRegionCode}
+            vcpuRange={vcpuRange}
+            setVcpuRange={setVcpuRange}
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+            entriesPerPage={entriesPerPage}
+            setEntriesPerPage={setEntriesPerPage}
+            setRegions={setRegions} // Pass setRegions to the filter
+          />
+   
+  
+        {/* Right Side: Table Section */}
+      
+          <InstanceDetailsTable className="w-4/6" data={data} openModal={openPopup} />
+      
       </div>
-
+  
       {/* Instance Details Popup */}
       <InstanceDetailsPopup
         instance={selectedInstance}
@@ -112,7 +119,7 @@ const InstanceContainer = () => {
         onClose={closePopup}
         rowID={rowID}
       />
-
+  
       {/* Pagination Controls */}
       <div className="flex justify-center items-center space-x-4 p-4">
         <button
@@ -137,6 +144,7 @@ const InstanceContainer = () => {
       </div>
     </div>
   );
+  
 };
 
 export default InstanceContainer;
