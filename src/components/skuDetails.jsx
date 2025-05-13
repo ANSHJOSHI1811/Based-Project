@@ -29,6 +29,7 @@ const SkuDetails = () => {
           <div className="bg-gray-100 p-4 rounded shadow mb-4 flex justify-between">
             <p><strong>{skuData.InstanceType}</strong> </p>
             <p><strong>Location:</strong> {skuData.RegionCode}</p>
+            <p><strong>Description:</strong> {skuData.Prices?.[0]?.Description || "N/A"}</p>
             <p><strong>Price:</strong> ${skuData.Prices?.[0]?.PricePerUnit || "N/A"}</p>
           </div>
           

@@ -27,17 +27,17 @@ const InstanceDetailsTable = ({ data, openModal }) => {
               onClick={() => openModal(row, row.ID)}
             >
               <td className="p-4 flex items-center gap-3">
-                <img
-                  src={
-                    row.ProviderID === 1
-                      ? awsLogo
-                      : row.ProviderID === 2
-                      ? azureLogo
-                      : null
-                  }
-                  alt="Provider Logo"
-                  className="w-10 h-10 rounded-md"
-                />
+                  <img
+                    src={
+                      row.ProviderID === 1
+                        ? awsLogo
+                        : row.ProviderID === 2
+                        ? azureLogo
+                        : null
+                    }
+                    alt="Provider Logo"
+                    className="w-10 h-10 rounded-md"
+                  />
               </td>
               <td className="p-4 font-medium text-gray-800">
                 {row.InstanceType} <span className="text-gray-500">{row.OperatingSystem}</span>

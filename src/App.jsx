@@ -31,7 +31,6 @@ function App() {
   return (
     <div>
       <Navbar />
-
       {showSignIn && <SignInModal
   onNotRegistered={handleNotRegistered}
   onClose={() => setShowSignIn(false)}

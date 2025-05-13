@@ -41,7 +41,7 @@ const SavingDetailsTable = ({ openModal }) => {
       const queryParams = new URLSearchParams({
         page,
         limit,
-        region: region || "",
+        region: region || "", 
         minimumPrice: priceRange[0],
         maximumPrice: priceRange[1],
       }).toString();
