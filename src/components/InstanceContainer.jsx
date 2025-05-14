@@ -13,10 +13,13 @@ const InstanceContainer = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [vcpuRange, setVcpuRange] = useState([1, 64]);
-  const [priceRange, setPriceRange] = useState([0, 10]);
+  const [priceRange, setPriceByRange] = useState([0, 10]);
   const [selectedInstance, setSelectedInstance] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [rowID, setRowID] = useState(null);
+  const [sortBy, setSortBy] = useState("price");
+  const [order, setOrder] = useState("asc");
+  const [includeNaPrice, setIncludeNaPrice] = useState(false);
 
   useEffect(() => {
     fetchProviders();
@@ -27,8 +30,8 @@ const InstanceContainer = () => {
   }, [selectedProvider]);
 
   useEffect(() => {
-    fetchData(currentPage, entriesPerPage, selectedRegionCode, vcpuRange, priceRange);
-  }, [currentPage, entriesPerPage, selectedRegionCode, vcpuRange, priceRange]);
+    fetchData(currentPage, entriesPerPage, selectedRegionCode, vcpuRange, priceRange, sortBy, order, includeNaPrice);
+  }, [currentPage, entriesPerPage, selectedRegionCode, vcpuRange, priceRange, sortBy, order, includeNaPrice]);
 
   const fetchProviders = async () => {
     try {
@@ -54,22 +57,34 @@ const InstanceContainer = () => {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = async (page, limit, region, vcpu, price, sort, ord, includeNa) => {
     try {
-      let url = `http://localhost:8080/skus?page=${currentPage}&limit=${entriesPerPage}`;
-      if (selectedRegionCode) url += `&region=${selectedRegionCode}`;
-      url += `&minVcpu=${vcpuRange[0]}&maxVcpu=${vcpuRange[1]}`;
-      url += `&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
-  
+      let url = `http://localhost:8080/skus?page=${page}&limit=${limit}`;
+      if (region) url += `&region=${region}`;
+      url += `&minVcpu=${vcpu[0]}&maxVcpu=${vcpu[1]}`;
+      url += `&minPrice=${price[0]}&maxPrice=${price[1]}`;
+      url += `&sortBy=${sort}&order=${ord}`;
+      url += `&includeNaPrice=${includeNa}`;
+
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch data");
       
       const result = await response.json();
       setData(result.data || []);
-      setTotalPages(result.totalPages || 1); // ✅ Ensure totalPages is updated
+      setTotalPages(result.totalPages || 1);
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
+  };
+
+  const handleSort = (field) => {
+    if (sortBy === field) {
+      setOrder(order === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(field);
+      setOrder("asc");
+    }
+    setCurrentPage(1);
   };
 
   const openPopup = (instance, rowID) => {
@@ -97,15 +112,22 @@ const InstanceContainer = () => {
           vcpuRange={vcpuRange}
           setVcpuRange={setVcpuRange}
           priceRange={priceRange}
-          setPriceRange={setPriceRange}
+          setPriceRange={setPriceByRange}
           entriesPerPage={entriesPerPage}
           setEntriesPerPage={setEntriesPerPage}
-          setRegions={setRegions} // Pass setRegions to the filter
+          setRegions={setRegions}
         />
-        <InstanceDetailsTable data={data} openModal={openPopup} />
+        <InstanceDetailsTable 
+          data={data} 
+          openModal={openPopup} 
+          onSort={handleSort}
+          sortBy={sortBy}
+          order={order}
+          includeNaPrice={includeNaPrice}
+          setIncludeNaPrice={setIncludeNaPrice}
+        />
       </div>
 
-      {/* Instance Details Popup */}
       <InstanceDetailsPopup
         instance={selectedInstance}
         isOpen={isPopupOpen}
@@ -113,7 +135,6 @@ const InstanceContainer = () => {
         rowID={rowID}
       />
 
-      {/* Pagination Controls */}
       <div className="flex justify-center items-center space-x-4 p-4">
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
